@@ -65,17 +65,59 @@ def navigate(page):
 st.markdown("""
 <style>
 
-/* Main application background */
+/* =========================================
+   REMOVE STREAMLIT DEFAULT HEADER
+========================================= */
+
+/* Hide top black header */
+[data-testid="stHeader"] {
+    display: none !important;
+    height: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Hide toolbar */
+[data-testid="stToolbar"] {
+    display: none !important;
+}
+
+/* Hide decoration bar */
+[data-testid="stDecoration"] {
+    display: none !important;
+}
+
+/* Hide deploy button */
+[data-testid="stStatusWidget"] {
+    display: none !important;
+}
+
+/* Hide default menu */
+#MainMenu {
+    display: none !important;
+}
+
+/* Hide Streamlit footer */
+footer {
+    display: none !important;
+}
+
+
+/* =========================================
+   MAIN APPLICATION LAYOUT
+========================================= */
+
 .stApp {
     background: #080e19;
     color: #f4f7fb;
 }
 
-/* Remove default top spacing */
+/* Full width content */
 .block-container {
-    padding-top: 1.5rem;
-    padding-bottom: 2rem;
-    max-width: 1250px;
+    max-width: 100% !important;
+    padding-top: 1rem !important;
+    padding-bottom: 2rem !important;
+    padding-left: 4% !important;
+    padding-right: 4% !important;
 }
 
 /* General text */
@@ -83,7 +125,11 @@ p, label, li {
     color: #b8c4d6;
 }
 
-/* Navigation buttons */
+
+/* =========================================
+   NAVIGATION BUTTONS
+========================================= */
+
 div.stButton > button {
     width: 100%;
     min-height: 48px;
@@ -101,7 +147,11 @@ div.stButton > button:hover {
     color: white;
 }
 
-/* Hero section */
+
+/* =========================================
+   HERO SECTION
+========================================= */
+
 .hero-tag {
     display: inline-block;
     color: #62aaff;
@@ -136,7 +186,11 @@ div.stButton > button:hover {
     margin-bottom: 30px;
 }
 
-/* Section headings */
+
+/* =========================================
+   SECTION HEADINGS
+========================================= */
+
 .section-heading {
     color: #ffffff;
     font-size: 27px;
@@ -145,7 +199,11 @@ div.stButton > button:hover {
     margin-bottom: 20px;
 }
 
-/* Feature cards */
+
+/* =========================================
+   FEATURE CARDS
+========================================= */
+
 .feature-card {
     background: linear-gradient(145deg, #14243a, #0d1727);
     border: 1px solid #253b57;
@@ -178,7 +236,11 @@ div.stButton > button:hover {
     line-height: 1.7;
 }
 
-/* Metrics */
+
+/* =========================================
+   METRICS
+========================================= */
+
 .metric-card {
     background: #111e31;
     border: 1px solid #253b57;
@@ -199,7 +261,11 @@ div.stButton > button:hover {
     font-weight: 800;
 }
 
-/* Prediction result */
+
+/* =========================================
+   PREDICTION RESULT
+========================================= */
+
 .price-card {
     background: linear-gradient(135deg, #102c4e, #123c68);
     border: 1px solid #337fca;
@@ -222,7 +288,11 @@ div.stButton > button:hover {
     margin-top: 10px;
 }
 
-/* Footer */
+
+/* =========================================
+   FOOTER
+========================================= */
+
 .footer {
     text-align: center;
     color: #71839c;
@@ -232,7 +302,11 @@ div.stButton > button:hover {
     font-size: 13px;
 }
 
-/* Form containers */
+
+/* =========================================
+   FORMS AND INPUTS
+========================================= */
+
 div[data-testid="stForm"] {
     background: #101c2e;
     padding: 25px;
@@ -240,20 +314,68 @@ div[data-testid="stForm"] {
     border-radius: 16px;
 }
 
-/* Input fields */
 .stSelectbox label,
 .stNumberInput label {
     color: #dce8f7 !important;
     font-weight: 600;
 }
 
-/* Hide Streamlit branding */
-#MainMenu {
-    visibility: hidden;
+/* Input text */
+.stSelectbox div,
+.stNumberInput input {
+    color: #f4f7fb;
 }
 
-footer {
-    visibility: hidden;
+/* Form submit button */
+div[data-testid="stFormSubmitButton"] button {
+    background: #1769d2;
+    border: 1px solid #3990ff;
+    color: white;
+    font-weight: 700;
+    min-height: 48px;
+    border-radius: 10px;
+}
+
+div[data-testid="stFormSubmitButton"] button:hover {
+    background: #2584f5;
+    color: white;
+}
+
+
+/* =========================================
+   DATAFRAME
+========================================= */
+
+[data-testid="stDataFrame"] {
+    border: 1px solid #263c58;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+
+/* =========================================
+   RESPONSIVE SPACING
+========================================= */
+
+@media (max-width: 768px) {
+
+    .block-container {
+        padding-left: 5% !important;
+        padding-right: 5% !important;
+    }
+
+    .hero-title {
+        font-size: 43px;
+    }
+
+    .price-value {
+        font-size: 34px;
+    }
+
+    .section-heading {
+        font-size: 23px;
+    }
+
 }
 
 </style>
@@ -265,16 +387,32 @@ footer {
 # ------------------------------------------------------------
 
 st.markdown("""
-<div style="display:flex; align-items:center; gap:12px;
-            margin-bottom:20px;">
+<div style="
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+">
+
     <span style="font-size:32px;">🚘</span>
-    <span style="font-size:25px; font-weight:800; color:white;">
+
+    <span style="
+        font-size:25px;
+        font-weight:800;
+        color:white;
+    ">
         Auto<span style="color:#4a9cff;">Value</span>
     </span>
-    <span style="color:#71839c; font-size:12px;
-                 margin-left:8px;">
+
+    <span style="
+        color:#71839c;
+        font-size:12px;
+        margin-left:8px;
+    ">
         SMART CAR VALUATION
     </span>
+
 </div>
 """, unsafe_allow_html=True)
 
@@ -282,6 +420,7 @@ st.markdown(
     "<div style='border-top:1px solid #263750;'></div>",
     unsafe_allow_html=True
 )
+
 
 nav1, nav2, nav3, nav4, nav5, nav6 = st.columns(
     [2.5, 1.1, 1.5, 1.1, 1.1, 0.9],
@@ -298,22 +437,27 @@ with nav1:
 with nav2:
     if st.button("Home", key="nav_home"):
         navigate("Home")
+        st.rerun()
 
 with nav3:
     if st.button("Predict Price", key="nav_predict"):
         navigate("Predict Price")
+        st.rerun()
 
 with nav4:
     if st.button("Insights", key="nav_insights"):
         navigate("Insights")
+        st.rerun()
 
 with nav5:
     if st.button("History", key="nav_history"):
         navigate("History")
+        st.rerun()
 
 with nav6:
     if st.button("About", key="nav_about"):
         navigate("About")
+        st.rerun()
 
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -330,9 +474,6 @@ if st.session_state.page == "Home":
     )
 
     with hero_text:
-
-        # IMPORTANT: unsafe_allow_html=True renders the HTML
-        # and applies the CSS classes defined above.
 
         st.markdown("""
         <div class="hero-tag">
@@ -361,13 +502,14 @@ if st.session_state.page == "Home":
 
     with hero_image:
 
-        # Car photograph displayed on the right side
         st.image(
             "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1100&q=85",
             use_container_width=True
         )
 
+
     # Feature section
+
     st.markdown(
         '<div class="section-heading">Why AutoValue?</div>',
         unsafe_allow_html=True
@@ -411,7 +553,9 @@ if st.session_state.page == "Home":
         </div>
         """, unsafe_allow_html=True)
 
+
     # Project statistics
+
     st.markdown(
         '<div class="section-heading">Project at a Glance</div>',
         unsafe_allow_html=True
@@ -426,7 +570,9 @@ if st.session_state.page == "Home":
         ("ML Algorithm", "Random Forest")
     ]
 
-    for col, (label, value) in zip([m1, m2, m3, m4], metrics):
+    for col, (label, value) in zip(
+        [m1, m2, m3, m4], metrics
+    ):
         with col:
             st.markdown(f"""
             <div class="metric-card">
@@ -464,6 +610,7 @@ elif st.session_state.page == "Predict Price":
         col1, col2 = st.columns(2)
 
         with col1:
+
             year = st.selectbox(
                 "Manufacturing Year",
                 options=list(range(2020, 1991, -1))
@@ -483,6 +630,7 @@ elif st.session_state.page == "Predict Price":
             )
 
         with col2:
+
             seller_type = st.selectbox(
                 "Seller Type",
                 ["Individual", "Dealer", "Trustmark Dealer"]
@@ -509,14 +657,15 @@ elif st.session_state.page == "Predict Price":
             use_container_width=True
         )
 
+
     if submitted:
 
-        # Feature engineering must match the training notebook.
+        # Feature engineering matching training notebook
+
         brand = selected_car.split()[0]
         model_family = " ".join(selected_car.split()[:2])
         car_age = 2026 - year
 
-        # Create input DataFrame with the exact training columns.
         input_data = pd.DataFrame([{
             "brand": brand,
             "model_family": model_family,
@@ -528,13 +677,12 @@ elif st.session_state.page == "Predict Price":
             "owner": owner
         }])
 
-        # Predict selling price
-        predicted_price = float(model.predict(input_data)[0])
+        predicted_price = float(
+            model.predict(input_data)[0]
+        )
 
-        # Avoid displaying negative prices
         predicted_price = max(0, predicted_price)
 
-        # Save latest prediction
         st.session_state.latest = {
             "Car": selected_car,
             "Year": year,
@@ -545,22 +693,25 @@ elif st.session_state.page == "Predict Price":
             "Predicted Price": round(predicted_price, 2)
         }
 
-        # Save prediction in current session history
         st.session_state.history.append(
             st.session_state.latest.copy()
         )
 
         st.markdown(f"""
         <div class="price-card">
+
             <div class="price-label">
                 ESTIMATED RESALE VALUE
             </div>
+
             <div class="price-value">
                 ₹{predicted_price:,.0f}
             </div>
+
             <p style="color:#b8d7fa;">
                 Your car's estimated market value
             </p>
+
         </div>
         """, unsafe_allow_html=True)
 
@@ -603,7 +754,9 @@ elif st.session_state.page == "Insights":
         ("Root Mean Squared Error", "₹3,76,395")
     ]
 
-    for col, (label, value) in zip([c1, c2, c3], insight_metrics):
+    for col, (label, value) in zip(
+        [c1, c2, c3], insight_metrics
+    ):
         with col:
             st.markdown(f"""
             <div class="metric-card">
@@ -612,9 +765,16 @@ elif st.session_state.page == "Insights":
             </div>
             """, unsafe_allow_html=True)
 
+
     st.markdown("### Cross Validation Performance")
 
-    cv_scores = [0.7767, 0.6276, 0.4692, 0.7647, 0.6485]
+    cv_scores = [
+        0.7767,
+        0.6276,
+        0.4692,
+        0.7647,
+        0.6485
+    ]
 
     cv_df = pd.DataFrame({
         "Fold": [
@@ -634,6 +794,7 @@ elif st.session_state.page == "Insights":
 
     st.write("**Mean CV R² Score:** 0.6573")
     st.write("**Standard Deviation:** 0.1115")
+
 
     st.markdown("### How the Model Works")
 
@@ -684,7 +845,9 @@ elif st.session_state.page == "History":
 
     if st.session_state.history:
 
-        history_df = pd.DataFrame(st.session_state.history)
+        history_df = pd.DataFrame(
+            st.session_state.history
+        )
 
         st.dataframe(
             history_df,
@@ -693,11 +856,14 @@ elif st.session_state.page == "History":
         )
 
         if st.button("Clear Prediction History"):
+
             st.session_state.history = []
             st.session_state.latest = None
+
             st.rerun()
 
     else:
+
         st.info(
             "No predictions yet. Visit the Price Predictor "
             "to calculate your first car valuation."
@@ -758,11 +924,20 @@ elif st.session_state.page == "About":
 
 st.markdown("""
 <div class="footer">
-    <div style="font-size:18px;font-weight:700;color:#dce8f7;">
+
+    <div style="
+        font-size:18px;
+        font-weight:700;
+        color:#dce8f7;
+    ">
         Auto<span style="color:#4a9cff;">Value</span>
     </div>
+
     Intelligent Automotive Technology | Machine Learning Project
+
     <br><br>
+
     Built with Python, Scikit-learn and Streamlit
+
 </div>
 """, unsafe_allow_html=True)
