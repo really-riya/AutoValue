@@ -1,7 +1,7 @@
 
 # ============================================================
 # AUTOVALUE - USED CAR PRICE PREDICTION APPLICATION
-# Built using Python, Streamlit and Machine Learning
+# Python | Streamlit | Machine Learning
 # ============================================================
 
 import streamlit as st
@@ -23,7 +23,7 @@ st.set_page_config(
 
 
 # ------------------------------------------------------------
-# 2. LOAD TRAINED MODEL AND CAR NAMES
+# 2. LOAD MODEL AND CAR NAMES
 # ------------------------------------------------------------
 
 @st.cache_resource
@@ -62,73 +62,39 @@ def navigate(page):
 # 4. CUSTOM CSS
 # ------------------------------------------------------------
 
-st.markdown("""
+st.html("""
 <style>
 
-/* =========================================
-   REMOVE STREAMLIT DEFAULT HEADER
-========================================= */
+/* REMOVE STREAMLIT HEADER */
 
-/* Hide top black header */
-[data-testid="stHeader"] {
-    display: none !important;
-    height: 0 !important;
-    visibility: hidden !important;
-}
-
-/* Hide toolbar */
-[data-testid="stToolbar"] {
-    display: none !important;
-}
-
-/* Hide decoration bar */
-[data-testid="stDecoration"] {
-    display: none !important;
-}
-
-/* Hide deploy button */
-[data-testid="stStatusWidget"] {
-    display: none !important;
-}
-
-/* Hide default menu */
-#MainMenu {
-    display: none !important;
-}
-
-/* Hide Streamlit footer */
+[data-testid="stHeader"],
+[data-testid="stToolbar"],
+[data-testid="stDecoration"],
+[data-testid="stStatusWidget"],
+#MainMenu,
 footer {
     display: none !important;
 }
 
-
-/* =========================================
-   MAIN APPLICATION LAYOUT
-========================================= */
+/* MAIN BACKGROUND */
 
 .stApp {
     background: #080e19;
     color: #f4f7fb;
 }
 
-/* Full width content */
 .block-container {
     max-width: 100% !important;
-    padding-top: 1rem !important;
-    padding-bottom: 2rem !important;
-    padding-left: 4% !important;
-    padding-right: 4% !important;
+    padding: 1rem 4% 2rem 4% !important;
 }
 
-/* General text */
+/* GENERAL TEXT */
+
 p, label, li {
     color: #b8c4d6;
 }
 
-
-/* =========================================
-   NAVIGATION BUTTONS
-========================================= */
+/* BUTTONS */
 
 div.stButton > button {
     width: 100%;
@@ -147,10 +113,7 @@ div.stButton > button:hover {
     color: white;
 }
 
-
-/* =========================================
-   HERO SECTION
-========================================= */
+/* HERO */
 
 .hero-tag {
     display: inline-block;
@@ -169,7 +132,7 @@ div.stButton > button:hover {
     font-size: clamp(42px, 5vw, 70px);
     font-weight: 800;
     line-height: 1.12;
-    color: #ffffff;
+    color: white;
     letter-spacing: -2px;
     margin-bottom: 22px;
 }
@@ -186,23 +149,17 @@ div.stButton > button:hover {
     margin-bottom: 30px;
 }
 
-
-/* =========================================
-   SECTION HEADINGS
-========================================= */
+/* SECTION HEADINGS */
 
 .section-heading {
-    color: #ffffff;
+    color: white;
     font-size: 27px;
     font-weight: 750;
     margin-top: 35px;
     margin-bottom: 20px;
 }
 
-
-/* =========================================
-   FEATURE CARDS
-========================================= */
+/* FEATURE CARDS */
 
 .feature-card {
     background: linear-gradient(145deg, #14243a, #0d1727);
@@ -236,10 +193,7 @@ div.stButton > button:hover {
     line-height: 1.7;
 }
 
-
-/* =========================================
-   METRICS
-========================================= */
+/* METRIC CARDS */
 
 .metric-card {
     background: #111e31;
@@ -257,14 +211,11 @@ div.stButton > button:hover {
 
 .metric-value {
     color: #60a9ff;
-    font-size: 27px;
+    font-size: 25px;
     font-weight: 800;
 }
 
-
-/* =========================================
-   PREDICTION RESULT
-========================================= */
+/* PRICE RESULT */
 
 .price-card {
     background: linear-gradient(135deg, #102c4e, #123c68);
@@ -288,10 +239,7 @@ div.stButton > button:hover {
     margin-top: 10px;
 }
 
-
-/* =========================================
-   FOOTER
-========================================= */
+/* FOOTER */
 
 .footer {
     text-align: center;
@@ -302,10 +250,7 @@ div.stButton > button:hover {
     font-size: 13px;
 }
 
-
-/* =========================================
-   FORMS AND INPUTS
-========================================= */
+/* FORMS */
 
 div[data-testid="stForm"] {
     background: #101c2e;
@@ -320,13 +265,6 @@ div[data-testid="stForm"] {
     font-weight: 600;
 }
 
-/* Input text */
-.stSelectbox div,
-.stNumberInput input {
-    color: #f4f7fb;
-}
-
-/* Form submit button */
 div[data-testid="stFormSubmitButton"] button {
     background: #1769d2;
     border: 1px solid #3990ff;
@@ -341,10 +279,7 @@ div[data-testid="stFormSubmitButton"] button:hover {
     color: white;
 }
 
-
-/* =========================================
-   DATAFRAME
-========================================= */
+/* DATAFRAME */
 
 [data-testid="stDataFrame"] {
     border: 1px solid #263c58;
@@ -352,13 +287,9 @@ div[data-testid="stFormSubmitButton"] button:hover {
     overflow: hidden;
 }
 
-
-/* =========================================
-   RESPONSIVE SPACING
-========================================= */
+/* RESPONSIVE */
 
 @media (max-width: 768px) {
-
     .block-container {
         padding-left: 5% !important;
         padding-right: 5% !important;
@@ -375,18 +306,17 @@ div[data-testid="stFormSubmitButton"] button:hover {
     .section-heading {
         font-size: 23px;
     }
-
 }
 
 </style>
-""", unsafe_allow_html=True)
+""")
 
 
 # ------------------------------------------------------------
 # 5. TOP NAVIGATION BAR
 # ------------------------------------------------------------
 
-st.markdown("""
+st.html("""
 <div style="
     display:flex;
     align-items:center;
@@ -394,8 +324,7 @@ st.markdown("""
     margin-bottom:20px;
     flex-wrap:wrap;
 ">
-
-    <span style="font-size:32px;">🚘</span>
+    <span style="font-size:32px;">&#128663;</span>
 
     <span style="
         font-size:25px;
@@ -412,14 +341,10 @@ st.markdown("""
     ">
         SMART CAR VALUATION
     </span>
-
 </div>
-""", unsafe_allow_html=True)
+""")
 
-st.markdown(
-    "<div style='border-top:1px solid #263750;'></div>",
-    unsafe_allow_html=True
-)
+st.html("<div style='border-top:1px solid #263750;'></div>")
 
 
 nav1, nav2, nav3, nav4, nav5, nav6 = st.columns(
@@ -428,11 +353,15 @@ nav1, nav2, nav3, nav4, nav5, nav6 = st.columns(
 )
 
 with nav1:
-    st.markdown(
-        "<div style='padding-top:13px;color:#71839c;"
-        "font-size:12px;'>EXPLORE AUTOVALUE</div>",
-        unsafe_allow_html=True
-    )
+    st.html("""
+    <div style="
+        padding-top:13px;
+        color:#71839c;
+        font-size:12px;
+    ">
+        EXPLORE AUTOVALUE
+    </div>
+    """)
 
 with nav2:
     if st.button("Home", key="nav_home"):
@@ -459,7 +388,7 @@ with nav6:
         navigate("About")
         st.rerun()
 
-st.markdown("<br>", unsafe_allow_html=True)
+st.write("")
 
 
 # ------------------------------------------------------------
@@ -475,7 +404,7 @@ if st.session_state.page == "Home":
 
     with hero_text:
 
-        st.markdown("""
+        st.html("""
         <div class="hero-tag">
             INTELLIGENT AUTOMOTIVE TECHNOLOGY
         </div>
@@ -491,7 +420,7 @@ if st.session_state.page == "Home":
             of machine learning. Make informed decisions before
             you buy or sell.
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
         if st.button(
             "Explore Price Predictor  →",
@@ -501,24 +430,21 @@ if st.session_state.page == "Home":
             st.rerun()
 
     with hero_image:
-
         st.image(
             "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1100&q=85",
             use_container_width=True
         )
 
+    # FEATURE SECTION
 
-    # Feature section
-
-    st.markdown(
-        '<div class="section-heading">Why AutoValue?</div>',
-        unsafe_allow_html=True
-    )
+    st.html("""
+    <div class="section-heading">Why AutoValue?</div>
+    """)
 
     f1, f2, f3 = st.columns(3, gap="large")
 
     with f1:
-        st.markdown("""
+        st.html("""
         <div class="feature-card">
             <div class="feature-icon">🧠</div>
             <div class="feature-title">Machine Learning</div>
@@ -527,10 +453,10 @@ if st.session_state.page == "Home":
                 model to estimate used car prices.
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
     with f2:
-        st.markdown("""
+        st.html("""
         <div class="feature-card">
             <div class="feature-icon">⚡</div>
             <div class="feature-title">Instant Valuation</div>
@@ -539,10 +465,10 @@ if st.session_state.page == "Home":
                 resale value within seconds.
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
     with f3:
-        st.markdown("""
+        st.html("""
         <div class="feature-card">
             <div class="feature-icon">📊</div>
             <div class="feature-title">Data Driven Insights</div>
@@ -551,15 +477,13 @@ if st.session_state.page == "Home":
                 and cross-validation results.
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
+    # PROJECT STATISTICS
 
-    # Project statistics
-
-    st.markdown(
-        '<div class="section-heading">Project at a Glance</div>',
-        unsafe_allow_html=True
-    )
+    st.html("""
+    <div class="section-heading">Project at a Glance</div>
+    """)
 
     m1, m2, m3, m4 = st.columns(4, gap="medium")
 
@@ -574,12 +498,12 @@ if st.session_state.page == "Home":
         [m1, m2, m3, m4], metrics
     ):
         with col:
-            st.markdown(f"""
+            st.html(f"""
             <div class="metric-card">
                 <div class="metric-label">{label}</div>
                 <div class="metric-value">{value}</div>
             </div>
-            """, unsafe_allow_html=True)
+            """)
 
 
 # ------------------------------------------------------------
@@ -588,10 +512,9 @@ if st.session_state.page == "Home":
 
 elif st.session_state.page == "Predict Price":
 
-    st.markdown(
-        '<div class="section-heading">Find Your Car\'s Value</div>',
-        unsafe_allow_html=True
-    )
+    st.html("""
+    <div class="section-heading">Find Your Car's Value</div>
+    """)
 
     st.write(
         "Enter the details of your vehicle to get an estimated "
@@ -657,10 +580,7 @@ elif st.session_state.page == "Predict Price":
             use_container_width=True
         )
 
-
     if submitted:
-
-        # Feature engineering matching training notebook
 
         brand = selected_car.split()[0]
         model_family = " ".join(selected_car.split()[:2])
@@ -677,57 +597,59 @@ elif st.session_state.page == "Predict Price":
             "owner": owner
         }])
 
-        predicted_price = float(
-            model.predict(input_data)[0]
-        )
+        try:
+            predicted_price = float(
+                model.predict(input_data)[0]
+            )
 
-        predicted_price = max(0, predicted_price)
+            predicted_price = max(0, predicted_price)
 
-        st.session_state.latest = {
-            "Car": selected_car,
-            "Year": year,
-            "Kilometres": km_driven,
-            "Fuel": fuel,
-            "Transmission": transmission,
-            "Owner": owner,
-            "Predicted Price": round(predicted_price, 2)
-        }
+            st.session_state.latest = {
+                "Car": selected_car,
+                "Year": year,
+                "Kilometres": km_driven,
+                "Fuel": fuel,
+                "Transmission": transmission,
+                "Owner": owner,
+                "Predicted Price": round(predicted_price, 2)
+            }
 
-        st.session_state.history.append(
-            st.session_state.latest.copy()
-        )
+            st.session_state.history.append(
+                st.session_state.latest.copy()
+            )
 
-        st.markdown(f"""
-        <div class="price-card">
+            st.html(f"""
+            <div class="price-card">
+                <div class="price-label">
+                    ESTIMATED RESALE VALUE
+                </div>
 
-            <div class="price-label">
-                ESTIMATED RESALE VALUE
+                <div class="price-value">
+                    ₹{predicted_price:,.0f}
+                </div>
+
+                <p style="color:#b8d7fa;">
+                    Your car's estimated market value
+                </p>
             </div>
+            """)
 
-            <div class="price-value">
-                ₹{predicted_price:,.0f}
-            </div>
+            st.markdown("### Prediction Summary")
 
-            <p style="color:#b8d7fa;">
-                Your car's estimated market value
-            </p>
+            st.write(f"**Car:** {selected_car}")
+            st.write(f"**Manufacturing Year:** {year}")
+            st.write(f"**Kilometres Driven:** {km_driven:,} km")
+            st.write(f"**Fuel Type:** {fuel}")
+            st.write(f"**Transmission:** {transmission}")
+            st.write(f"**Ownership:** {owner}")
 
-        </div>
-        """, unsafe_allow_html=True)
+            st.info(
+                "This is a machine learning estimate, not a guaranteed "
+                "market price. Actual resale value may vary."
+            )
 
-        st.markdown("### Prediction Summary")
-
-        st.write(f"**Car:** {selected_car}")
-        st.write(f"**Manufacturing Year:** {year}")
-        st.write(f"**Kilometres Driven:** {km_driven:,} km")
-        st.write(f"**Fuel Type:** {fuel}")
-        st.write(f"**Transmission:** {transmission}")
-        st.write(f"**Ownership:** {owner}")
-
-        st.info(
-            "This is a machine learning estimate, not a guaranteed "
-            "market price. Actual resale value may vary."
-        )
+        except Exception as e:
+            st.error(f"Prediction could not be completed: {e}")
 
 
 # ------------------------------------------------------------
@@ -736,10 +658,11 @@ elif st.session_state.page == "Predict Price":
 
 elif st.session_state.page == "Insights":
 
-    st.markdown(
-        '<div class="section-heading">Model Performance & Insights</div>',
-        unsafe_allow_html=True
-    )
+    st.html("""
+    <div class="section-heading">
+        Model Performance & Insights
+    </div>
+    """)
 
     st.write(
         "AutoValue uses a Random Forest Regression model "
@@ -758,13 +681,12 @@ elif st.session_state.page == "Insights":
         [c1, c2, c3], insight_metrics
     ):
         with col:
-            st.markdown(f"""
+            st.html(f"""
             <div class="metric-card">
                 <div class="metric-label">{label}</div>
                 <div class="metric-value">{value}</div>
             </div>
-            """, unsafe_allow_html=True)
-
+            """)
 
     st.markdown("### Cross Validation Performance")
 
@@ -794,7 +716,6 @@ elif st.session_state.page == "Insights":
 
     st.write("**Mean CV R² Score:** 0.6573")
     st.write("**Standard Deviation:** 0.1115")
-
 
     st.markdown("### How the Model Works")
 
@@ -838,10 +759,11 @@ elif st.session_state.page == "Insights":
 
 elif st.session_state.page == "History":
 
-    st.markdown(
-        '<div class="section-heading">Your Prediction History</div>',
-        unsafe_allow_html=True
-    )
+    st.html("""
+    <div class="section-heading">
+        Your Prediction History
+    </div>
+    """)
 
     if st.session_state.history:
 
@@ -876,10 +798,9 @@ elif st.session_state.page == "History":
 
 elif st.session_state.page == "About":
 
-    st.markdown(
-        '<div class="section-heading">About AutoValue</div>',
-        unsafe_allow_html=True
-    )
+    st.html("""
+    <div class="section-heading">About AutoValue</div>
+    """)
 
     st.markdown("""
     AutoValue is a machine learning based used-car price
@@ -922,7 +843,7 @@ elif st.session_state.page == "About":
 # 11. FOOTER
 # ------------------------------------------------------------
 
-st.markdown("""
+st.html("""
 <div class="footer">
 
     <div style="
@@ -940,4 +861,4 @@ st.markdown("""
     Built with Python, Scikit-learn and Streamlit
 
 </div>
-""", unsafe_allow_html=True)
+""")
